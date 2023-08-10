@@ -44,6 +44,7 @@ console.log(`At the head of the table is... ${headOfTable}`);
 console.log(`Adjacent to the left is: ${adjacentLeft}`);
 console.log(`Adjacent to the right is: ${adjacentRight}`);
 
+// ?? 是空合并运算符
 console.log(`Further down on the left is: ${furtherLeft ?? "nobody"}`);
 console.log(`Further down on the right is: ${furtherRight ?? "nobody"}`);
 

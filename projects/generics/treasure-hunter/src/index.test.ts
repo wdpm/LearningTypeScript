@@ -1,3 +1,4 @@
+// @ts-ignore
 import { describe, expect, it, test } from "@jest/globals";
 import { expectType } from "tsd";
 

@@ -6,6 +6,7 @@ import * as solution from "./solution";
 const { groupRestaurants } = process.env.TEST_SOLUTIONS ? solution : index;
 
 describe(groupRestaurants, () => {
+	// https://jestjs.io/docs/api#1-testeachtablename-fn-timeout
 	test.each([
 		[[], {}],
 		[

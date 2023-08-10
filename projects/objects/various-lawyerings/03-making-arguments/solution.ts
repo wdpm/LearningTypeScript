@@ -1,3 +1,17 @@
+/**
+ * 这里给出了一个案件中动议（Motion）的类型定义。以下是各个字段的含义：
+
+- from: 动议发起方，可以是被告（defendant）或原告（plaintiff）
+- reason: 动议的原因
+- classification: 动议的分类，可以是“驳回”（dismiss）、“抑制”（suppress）、“地点”（venue）、“无罪”（acquittal）、
+ “更正”（correction）或“新审”（new trial）
+- step: 动议所处的阶段，可以是“庭前”（pre-trial）或“庭后”（post-trial）
+- deliberationHours: 法官对动议进行审议的时间，以小时为单位
+- annoyedJustice: 法官是否因动议而感到烦恼
+- estimatedDeliberationHours: 预计法官对动议进行审议的时间，以小时为单位
+- status: 动议的状态，可以是“允许”（allowed）、“拒绝”（denied）或“待定”（pending）
+ */
+
 export type MotionBase = {
 	from: "defendant" | "plaintiff";
 	reason: string;

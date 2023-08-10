@@ -16,11 +16,13 @@ export function runCommands() {
 				command = "water";
 				break;
 
+			// 3-6
 			default:
 				command = randomNumber;
 				break;
 		}
 
+		// case 3-6
 		if (typeof command === "number") {
 			switch (nextSupply) {
 				case "food":
@@ -39,6 +41,7 @@ export function runCommands() {
 			}
 		}
 
+		// case 1-2
 		switch (command) {
 			case "food":
 				nextSupply = "food";

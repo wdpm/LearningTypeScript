@@ -32,3 +32,11 @@ npm run tsc -- --project 01-clowning-around --watch
 
 - Don't import code from one step into another.
 - Some of the errors presented by TypeScript may use symbols or terms you haven't covered yet. That's ok! Do your best with what you know so far.
+
+## Bugs
+
+```bash
+"test:solutions": "tsc ./*/solution.ts",
+```
+
+Not work in windows 10.

@@ -31,6 +31,7 @@ describe(duel, () => {
 
 	describe("duel", () => {
 		it("returns the hero when their computed power is greater", () => {
+			// human is good
 			const actual = duel(human, patsy);
 
 			expect(actual).toEqual([
@@ -45,8 +46,10 @@ describe(duel, () => {
 		});
 
 		it("returns the villain when their computed power is greater", () => {
+			// human is bad
 			const actual = duel(patsy, human);
 
+			// 1/1 >= 1/(0.9^3) ? No => return human
 			expect(actual).toEqual([
 				"villain",
 				{

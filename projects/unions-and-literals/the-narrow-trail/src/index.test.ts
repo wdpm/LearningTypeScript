@@ -31,7 +31,19 @@ describe(runCommands, () => {
 	])("%j", (randomValues: number[], expected: boolean | Error) => {
 		mockRandom.mockClear();
 
+		// SUT代码逻辑：
+		// const randomNumber = Math.floor(Math.random() * 6) + 1;
+		// 这里是根据 randomNumber 的值来构造符合条件的random值。
+		// 因此 (randomNumber - 1)/6 => pseudo random
+		// 1 => 0/6 = 0
+		// 2 => 1/6 = 0.17
+		// 3 => 2/6 = 0.34
+		// 4 => 3/6 = 0.5
+		// 5 => 4/6 = 0.67
+		// 6 => 5/6 = 0.84
+
 		for (const randomValue of randomValues) {
+			// (randomValue - 1) / 6 plus 0.01 is better
 			mockRandom.mockReturnValueOnce((randomValue - 1) / 6);
 		}
 

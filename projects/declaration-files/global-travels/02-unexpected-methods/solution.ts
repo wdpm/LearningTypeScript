@@ -7,6 +7,7 @@ declare global {
 	}
 
 	interface String {
+		// [string, string] ? string[] ?
 		alternating(): [string, string];
 	}
 }

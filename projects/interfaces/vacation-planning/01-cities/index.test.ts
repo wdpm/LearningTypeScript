@@ -6,6 +6,7 @@ import * as solution from "./solution";
 const { describeCity } = process.env.TEST_SOLUTIONS ? solution : index;
 
 const dedent = (text: TemplateStringsArray) =>
+	// 换行和空格 => 仅换行
 	text[0].replaceAll(/\n\s*/g, "\n").trim();
 
 describe(describeCity, () => {

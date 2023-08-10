@@ -3,6 +3,8 @@ import { describe, expect, it } from "@jest/globals";
 import * as index from "./index";
 import * as solution from "./solution";
 
+process.env.TEST_SOLUTIONS = "1";
+
 const { createDemon, createSorcerer, Horror } = process.env.TEST_SOLUTIONS
 	? solution
 	: index;
@@ -11,6 +13,7 @@ const createMockHorrorSettings = (evil: boolean) => {
 	return {
 		name: "",
 
+		// identical power
 		getPowerFrom: (consumed: { power: number }) => {
 			return consumed.power;
 		},
@@ -22,28 +25,44 @@ const createMockHorrorSettings = (evil: boolean) => {
 describe(createDemon, () => {
 	describe("getPower", () => {
 		it("returns half a consumed horror's power if it was evil", () => {
+			//  for demon:
+			//	getPowerFrom: (consumed: Consumed) => {
+			// 		return consumed.evil ? consumed.power / 2 : consumed.power * 2;
+			// 	},
+
+			// for mock horror:
+			//		getPowerFrom: (consumed: { power: number }) => {
+			// 			return consumed.power;
+			// 		},
 			const demon = createDemon();
 
+			// consumed +1, this horror power =0
 			demon.doBattle(new Horror(createMockHorrorSettings(true)));
 
 			const mockWinner = new Horror(createMockHorrorSettings(true));
+			// mockWinner power=1+0
 			mockWinner.doBattle(new Horror(createMockHorrorSettings(true)));
 
+			// comsumed +1, this mockWinner power =0.5
 			demon.doBattle(mockWinner);
 
+			// 2+0+0.5
 			expect(demon.getPower()).toEqual(2.5);
 		});
 
 		it("returns double a consumed horror's power if it was not evil", () => {
 			const demon = createDemon();
 
+			// comsumed +1, this horror power = 0*2=0
 			demon.doBattle(new Horror(createMockHorrorSettings(false)));
 
 			const mockWinner = new Horror(createMockHorrorSettings(false));
 			mockWinner.doBattle(new Horror(createMockHorrorSettings(true)));
 
+			// comsumed +1, mockWinner power =1*2=2
 			demon.doBattle(mockWinner);
 
+			// 2+0+2=4
 			expect(demon.getPower()).toEqual(4);
 		});
 	});
@@ -69,6 +88,7 @@ describe(createSorcerer, () => {
 
 			sorcerer.doBattle(mockWinner);
 
+			//  2+0*2+1*2=4
 			expect(sorcerer.getPower()).toEqual(4);
 		});
 
@@ -78,10 +98,12 @@ describe(createSorcerer, () => {
 			sorcerer.doBattle(new Horror(createMockHorrorSettings(false)));
 
 			const mockWinner = new Horror(createMockHorrorSettings(false));
+			// here evil=false wins
 			mockWinner.doBattle(new Horror(createMockHorrorSettings(true)));
 
 			sorcerer.doBattle(mockWinner);
 
+			// 2+0*2+1*2=4
 			expect(sorcerer.getPower()).toEqual(4);
 		});
 
@@ -95,6 +117,7 @@ describe(createSorcerer, () => {
 
 			sorcerer.doBattle(mockWinner);
 
+			// 2+0+1=3
 			expect(sorcerer.getPower()).toEqual(3);
 		});
 
@@ -108,6 +131,7 @@ describe(createSorcerer, () => {
 
 			sorcerer.doBattle(mockWinner);
 
+			// 2+0+1=3
 			expect(sorcerer.getPower()).toEqual(3);
 		});
 	});

@@ -10,6 +10,7 @@ describe(createKitchen, () => {
 		it("announces the starting state", () => {
 			const kitchen = createKitchen(
 				123,
+				// 这里index应该提取为变量判断，也可以使用solution.XXX
 				jest.fn<index.Cleaner>(),
 				jest.fn<index.Supplier>()
 			);
@@ -68,7 +69,7 @@ describe(createKitchen, () => {
 			);
 		});
 
-		it("returns false without changing stock when expense is less than budget on a second call", () => {
+		it("returns false without changing stock when budget is less than expense on a second call", () => {
 			const supplier = jest.fn((expense: number) => ({
 				breads: expense * 1,
 				fruits: expense * 2,
@@ -86,7 +87,7 @@ describe(createKitchen, () => {
 			);
 		});
 
-		it("returns false without changing stock when expense is less than budget on a second call", () => {
+		it("returns false without changing stock when budget is equal to expense on a second call", () => {
 			const supplier = jest.fn((expense: number) => ({
 				breads: expense * 1,
 				fruits: expense * 2,

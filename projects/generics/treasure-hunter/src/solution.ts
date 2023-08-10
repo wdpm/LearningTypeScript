@@ -2,6 +2,7 @@ export type Buried<T> = Buried<T>[] | NextArea<T> | Treasure<T>;
 
 export type NextArea<T> = Catacomb<T> | TunnelSystem<T>;
 
+// 地下墓穴；茔窟
 export interface Catacomb<T> {
 	inside: Buried<T>;
 	type: "catacomb";
