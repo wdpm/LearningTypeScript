@@ -2,7 +2,7 @@
 	"name": "temporary-code",
 	"scripts": {
 		"test": "tsc",
-		"test:solutions": "tsc ./src/*solution*.ts",
+		"test:solutions": "cross-env TEST_SOLUTIONS=1 jest",
 		"tsc": "tsc"
 	}
 }
